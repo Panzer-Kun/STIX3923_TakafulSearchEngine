@@ -2,6 +2,7 @@ import pandas as pd
 import re
 import gensim.downloader as api
 import gensim
+import numpy
 from gensim.parsing.preprocessing import remove_stopwords
 from gensim import corpora
 from sklearn.metrics.pairwise import cosine_similarity;
@@ -36,10 +37,11 @@ class System:
         except:            
             self.w2v_model = api.load('word2vec-google-news-300')
             self.w2v_model.save("./w2vecmodel.mod")
-            print("Saved glove model")
+            print("Saved w2v model")
 
         self.glove_embedding_size = len(self.glove_model['computer'])
         self.w2vec_embedding_size = len(self.w2v_model['computer'])
+
 
         if self.debug:
             print(self.cleaned_sentences)
@@ -52,7 +54,28 @@ class System:
                 print(sent)
                 print(embedding)
 
-        
+    def getWordVec(self, word, model):
+        samp = model['computer']
+        vec = [0] * len(samp)
+
+        try:
+            vec = model[word]  
+        except:
+            vec = [0] * len(samp)
+
+        return (vec)
+
+    def getPhraseEmbedding(self, phrase, embeddingmodel):            
+        samp = self.getWordVec('computer', embeddingmodel)
+        vec = numpy.array([0] * len(samp))
+        den = 0
+
+        for word in phrase.split():
+            den = den + 1
+            vec = vec + numpy.array(self.getWordVec(word, embeddingmodel))
+
+        return vec.reshape(1, -1)
+
     def clean_sentence(self, sentence, stopwords=False):
         sentence = sentence.lower().strip()
         sentence = re.sub(r'[^a-z0-9\s]', '', sentence)
@@ -72,10 +95,10 @@ class System:
         
         return cleaned_sentences
 
-    def calculateAnswer(self, query, question_embedding):
+    def calculateAnswer(self, query, question_embedding, sentence_embedding):
         max_sim = -1
         index_sim = -1
-        for index, faq_embedding in enumerate(self.bow_corpus):
+        for index, faq_embedding in enumerate(sentence_embedding):
             sim = cosine_similarity(faq_embedding, question_embedding)[0][0]
             print(index, sim, self.cleaned_sentences_with_stopwords[index])
             
@@ -89,15 +112,37 @@ class System:
             print("Question: ", query)
             print("\n")
             print("Retrieved: ", self.df.iloc[index_sim, 0]) 
-            print(self.df.iloc[index_sim, 1])            
+            print(self.df.iloc[index_sim, 1]) 
+               
+        return {
+            'query': self.df.iloc[index_sim, 0], 
+            'retrieved': self.df.iloc[index_sim, 1]
+        }
 
-    def getAnswer(self, query):
-        question = self.clean_sentence(query, stopwords=False)
+    def getAnswer(self, query, model='w2v'):
+        question = self.clean_sentence(query)
         question_embedding = self.dictionary.doc2bow(question.split())
+    
+        phrase_embedding = None
+        sent_embeddings = []
 
+        # with Word2Vec Model
+        if model == 'w2v':
+            for sent in self.cleaned_sentences:
+                sent_embeddings.append(self.getPhraseEmbedding(sent, self.w2v_model))
+
+            phrase_embedding = self.getPhraseEmbedding(question, self.w2v_model)  
+
+        # With Glove Model
+        else:
+            for sent in self.cleaned_sentences:
+                sent_embeddings.append(self.getPhraseEmbedding(sent, self.glove_model))
+
+            phrase_embedding = self.getPhraseEmbedding(question, self.glove_model)  
+
+        
         if self.debug:
             print("\n\n", query, "\n", question_embedding)
 
-        self.calculateAnswer(query, question_embedding)
-        return query 
+        return self.calculateAnswer(query, phrase_embedding, sent_embeddings)
         
