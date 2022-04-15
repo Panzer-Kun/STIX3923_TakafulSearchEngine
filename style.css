@@ -1,0 +1,36 @@
+.resultWrapper {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.inputWrapper {
+    display: flex;
+    width: 100%;
+}
+
+#SearchBox {
+    width: 75%;
+}
+
+#SearchBtn {
+    width: 25%;
+}
+
+.contentWrapper {
+    width: 50%;
+    margin: 0px auto;
+}
+
+p {
+    text-align: justify;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .contentWrapper {
+        width: 95%;
+    }
+    
+}
