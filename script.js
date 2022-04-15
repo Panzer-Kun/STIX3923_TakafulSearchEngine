@@ -5,7 +5,7 @@ let resultTitle = document.querySelector('#resultTitle');
 
 window.onload = setAutoComplete;
 
-const searchEngineURL = 'http://127.0.0.1:5000/search';
+const searchEngineURL = 'https://dd54-2001-e68-5403-a01f-d892-2e49-ff08-e880.ap.ngrok.io/search';
 
 searchButton.addEventListener('click', click);
 
