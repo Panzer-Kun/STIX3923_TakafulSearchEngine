@@ -52,7 +52,7 @@ function setAutoComplete() {
         complete: data => {
             console.log(data);
             
-            data.data.array.forEach(element => {
+            data["data"].forEach(element => {
                 let option = document.createElement("option");
                 option.value = element[0];
                 dataList.appendChild(option);
