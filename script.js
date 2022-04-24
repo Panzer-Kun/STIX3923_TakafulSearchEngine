@@ -50,7 +50,7 @@ function setAutoComplete() {
     Papa.parse("https://panzer-kun.github.io/SearchEngine/AIA_TakafulCombined.csv", {
         download: true,
         complete: data => {
-            console.log(data.json());
+            console.log(data);
             
             data.data.array.forEach(element => {
                 let option = document.createElement("option");
