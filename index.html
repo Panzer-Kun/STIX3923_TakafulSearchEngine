@@ -10,10 +10,14 @@
 <body>
     <div class="contentWrapper">
         <div class="inputWrapper">
-            <input type='text' id="SearchBox" placeholder="Search Anything About Takaful...">
+            <input type='text' list="KeywordSuggestion" id="SearchBox" placeholder="Search Anything About Takaful...">
             <input type="button" id="SearchBtn" value="Search" >    
         </div>
         
+        <datalist id="KeywordSuggestion"> 
+            <option value="What is Takaful">
+        </datalist>
+
         <div class="resultWrapper">
             <p><b id="resultTitle"></b></p>
             <p id="resultText"></p>
