@@ -2,10 +2,11 @@ let searchBox = document.querySelector('#SearchBox');
 let searchButton = document.querySelector('#SearchBtn');
 let searchResult = document.querySelector('#resultText');
 let resultTitle = document.querySelector('#resultTitle');
+let dataList = document.querySelector("#KeywordSuggestion");
 
 window.onload = setAutoComplete;
 
-const searchEngineURL = ' https://fbdd-103-5-183-40.ap.ngrok.io/search';
+const searchEngineURL = 'http://127.0.0.1:5000/search';
 
 searchButton.addEventListener('click', click);
 
@@ -49,8 +50,13 @@ function setAutoComplete() {
     Papa.parse("https://panzer-kun.github.io/SearchEngine/AIA_TakafulCombined.csv", {
         download: true,
         complete: data => {
-            console.log(data);
-
+            console.log(data.json());
+            
+            data.data.array.forEach(element => {
+                let option = document.createElement("option");
+                option.value = element[0];
+                dataList.appendChild(option);
+            });
         },
     });
 }
