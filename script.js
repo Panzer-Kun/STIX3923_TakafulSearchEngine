@@ -5,7 +5,7 @@ let resultTitle = document.querySelector('#resultTitle');
 
 window.onload = setAutoComplete;
 
-const searchEngineURL = 'https://dd54-2001-e68-5403-a01f-d892-2e49-ff08-e880.ap.ngrok.io/search';
+const searchEngineURL = 'http://127.0.0.1:5000/search';
 
 searchButton.addEventListener('click', click);
 
@@ -30,7 +30,7 @@ function click() {
 
 //"https://raw.githubusercontent.com/Panzer-Kun/SearchEngine/main/AIA_TakafulCombined.csv"
 function setAutoComplete() {
-    fetch("https://panzer-kun.github.io/SearchEngine/AIA_TakafulCombined.csv",
+    /*fetch("https://panzer-kun.github.io/SearchEngine/AIA_TakafulCombined.csv",
         {
             method: "get",
             headers: {
@@ -44,5 +44,13 @@ function setAutoComplete() {
         })
         .then(data => {
             console.log(data);
-        })
+        });*/
+    
+    Papa.parse("https://panzer-kun.github.io/SearchEngine/AIA_TakafulCombined.csv", {
+        download: true,
+        complete: data => {
+            console.log(data);
+
+        },
+    });
 }
