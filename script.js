@@ -91,6 +91,7 @@ function setAutoComplete() {
 }
 
 function setList() {
+    searchBox.value = "";
     document.querySelectorAll("#KeywordSuggestion > option").forEach(item => item.remove());
 
     let cat = selectedChoice.value;
