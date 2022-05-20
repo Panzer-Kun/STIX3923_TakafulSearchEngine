@@ -9,7 +9,7 @@ let csvData = [];
 
 window.onload = setAutoComplete;
 
-const searchEngineURL = 'https://d082-103-5-183-45.ap.ngrok.io/search';
+const searchEngineURL = 'https://abad-103-5-183-41.ap.ngrok.io/search';
 
 searchButton.addEventListener('click', click);
 
@@ -22,7 +22,7 @@ function click() {
     searchBox.value = '';  
     console.log(query);
     let formatted = query.replace(' ', '+');
-    window.location.href="http://127.0.0.1:8000/search.html?q=" + formatted;
+    window.location.href="./search.html?q=" + formatted;
 
     /*fetch(searchEngineURL + '?q=' + formatted)
     .then(response => {
