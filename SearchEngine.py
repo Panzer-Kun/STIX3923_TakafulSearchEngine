@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify, render_template
 from flask import request
 
 from TakafulSystem import System
@@ -18,7 +18,10 @@ def home_page():
     print('query : ' + query)
     print('model : ' + model)
 
-    return ts.getAnswer(query, model)
+    response = jsonify(ts.getAnswer(query, model))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+
+    return response
 
 
 

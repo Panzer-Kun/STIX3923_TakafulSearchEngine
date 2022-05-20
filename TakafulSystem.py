@@ -13,7 +13,8 @@ from gensim import models
 class System:
     def __init__(self, debug=False):
         self.debug = debug
-        self.df = pd.read_csv("https://raw.githubusercontent.com/Panzer-Kun/SearchEngine/main/AIA_TakafulCombinedLatest.csv")
+        self.df = pd.read_csv("https://raw.githubusercontent.com/Panzer-Kun/SearchEngine/main/AIA_TakafulCombinedLatest.csv", usecols=[0,1])
+        print(self.df)
         self.df.columns = ["questions", "answers"]
         self.cleaned_sentences = self.get_cleaned_sentences(stopwords=True)
         self.cleaned_sentences_with_stopwords = self.get_cleaned_sentences()
@@ -77,6 +78,7 @@ class System:
         return vec.reshape(1, -1)
 
     def clean_sentence(self, sentence, stopwords=False):
+        print(sentence)
         sentence = sentence.lower().strip()
         sentence = re.sub(r'[^a-z0-9\s]', '', sentence)
  

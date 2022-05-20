@@ -2,11 +2,14 @@ let searchBox = document.querySelector('#SearchBox');
 let searchButton = document.querySelector('#SearchBtn');
 let searchResult = document.querySelector('#resultText');
 let resultTitle = document.querySelector('#resultTitle');
-let dataList = document.querySelector("#KeywordSuggestion");
+let dataList = document.querySelector('#KeywordSuggestion');
+let selectedChoice = document.querySelector('#choice');
+let csvData = [];
+
 
 window.onload = setAutoComplete;
 
-const searchEngineURL = 'http://127.0.0.1:5000/search';
+const searchEngineURL = 'https://de08-103-5-183-45.in.ngrok.io/search';
 
 searchButton.addEventListener('click', click);
 
@@ -76,16 +79,37 @@ function setAutoComplete() {
     }
    
 
-    Papa.parse(/*"https://panzer-kun.github.io/SearchEngine/AIA_TakafulCombined.csv"*/ "./AIA_TakafulCombinedLatest.csv", {
+    Papa.parse("https://panzer-kun.github.io/SearchEngine/AIA_TakafulCombinedLatest.csv", {
         download: true,
         complete: data => {
             console.log(data);
+            csvData = data.data;
             
-            data["data"].forEach(element => {
-                let option = document.createElement("option");
-                option.value = element[0];
-                dataList.appendChild(option);
-            });
+            setList();
         },
     });
 }
+
+function setList() {
+    document.querySelectorAll("#KeywordSuggestion > option").forEach(item => item.remove());
+
+    let cat = selectedChoice.value;
+
+    let choices = [];
+
+    csvData.forEach(element => {
+        if (element[2] === cat) {
+            choices.push(element);
+        }
+    });
+
+    console.log("Updated choices: " + choices.length);
+
+    choices.forEach(element => {
+        let option = document.createElement("option");
+        option.value = element[0];
+        dataList.appendChild(option);
+    });
+}
+
+selectedChoice.addEventListener("change", setList);
