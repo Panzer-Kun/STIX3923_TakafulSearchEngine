@@ -13,6 +13,10 @@ const searchEngineURL = 'https://de08-103-5-183-45.in.ngrok.io/search';
 
 searchButton.addEventListener('click', click);
 
+searchBox.addEventListener("keyup", (evt) => {
+    if (evt.key === "Enter") click();
+});
+
 function click() {
     let query = searchBox.value;
     searchBox.value = '';  
@@ -90,8 +94,8 @@ function setAutoComplete() {
     });
 }
 
-function setList() {
-    searchBox.value = "";
+function setList(reset) {
+    if (reset != null) searchBox.value = "";
     document.querySelectorAll("#KeywordSuggestion > option").forEach(item => item.remove());
 
     let cat = selectedChoice.value;
@@ -113,4 +117,4 @@ function setList() {
     });
 }
 
-selectedChoice.addEventListener("change", setList);
+selectedChoice.addEventListener("change", () => setList(true));
