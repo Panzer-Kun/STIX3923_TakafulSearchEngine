@@ -1,9 +1,19 @@
-
 .resultWrapper {
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     align-items: flex-start;
+}
+
+.contentWrapper {
+    width: 95%;
+    margin: 0px auto;
+}
+
+p {
+    text-align: justify;
+    line-height: 1.8;
+    font-family: sans-serif
 }
 
 .inputWrapper {
@@ -17,6 +27,15 @@
     width: 100%;
 }
 
+#SearchBtn {
+    width: 25%;
+    padding: 8px;
+    border: none;
+    border-radius: 0px 16px 16px 0px;
+    background: rgba(0, 163, 255, 0.2);
+    color: #00a3ff;
+}
+
 #choice {
     flex: 100%;
     padding: 8px;
@@ -27,13 +46,12 @@
 }
 
 .logoWrapper {
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: bolder;
     font-family: sans-serif;
+    margin: 32px auto;
     text-align: center;
-    margin-block: 64px;
 }
-
 .blue {
     color:#00a3ff;
 }
@@ -47,32 +65,19 @@
    
 }
 
-#SearchBtn {
-    width: 25%;
-    padding: 8px;
-    border: none;
-    border-radius: 0px 16px 16px 0px;
-    background: rgba(0, 163, 255, 0.2);
-    color: #00a3ff;
-}
-
-.contentWrapper {
-    width: 95%;
-    margin: 0px auto;
-}
-
-p {
-    text-align: justify;
-    line-height: 1.8;
-}
-
 @media (min-width: 768px) {
     .contentWrapper {
         width: 50%;
+        margin: 32px;
     }
     
     .inputWrapper {
         flex-flow: row;
+    }
+
+    .logoWrapper {
+        margin: 32px;
+        text-align: start;
     }
 
     #choice {
