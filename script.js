@@ -15,8 +15,9 @@ function click() {
     searchBox.value = '';  
     console.log(query);
     let formatted = query.replace(' ', '+');
+    window.location.href="http://127.0.0.1:8000/search.html?q=" + formatted;
 
-    fetch(searchEngineURL + '?q=' + formatted)
+    /*fetch(searchEngineURL + '?q=' + formatted)
     .then(response => {
         if (response.ok) {
             return response.json();
@@ -26,7 +27,31 @@ function click() {
         console.log(data);
         resultTitle.innerText = data['query'];
         searchResult.innerText = data['retrieved'];
-    })
+    });*/
+}
+
+function getParam(q) {
+    let params = new URLSearchParams(q);
+    if (params.has('q')) {
+        query= params.get('q');
+
+        searchBox.value = query;
+
+        fetch(searchEngineURL + window.location.search)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+        })
+        .then(data => {
+            console.log(data);
+            resultTitle.innerText = data['query'];
+            searchResult.innerText = data['retrieved'];
+        })
+    }
+    else {
+        window.location = "http://127.0.0.1:8000/";
+    }
 }
 
 //"https://raw.githubusercontent.com/Panzer-Kun/SearchEngine/main/AIA_TakafulCombined.csv"
@@ -46,8 +71,12 @@ function setAutoComplete() {
         .then(data => {
             console.log(data);
         });*/
-    
-    Papa.parse("https://panzer-kun.github.io/SearchEngine/AIA_TakafulCombined.csv", {
+    if(window.location.pathname == "/search.html"){
+        getParam(window.location.search);
+    }
+   
+
+    Papa.parse(/*"https://panzer-kun.github.io/SearchEngine/AIA_TakafulCombined.csv"*/ "./AIA_TakafulCombinedLatest.csv", {
         download: true,
         complete: data => {
             console.log(data);
