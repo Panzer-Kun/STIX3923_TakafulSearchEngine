@@ -8,10 +8,23 @@
     
 </head>
 <body>
+    <div class="logoWrapper">
+        <span class="blue">TAKAFUL</span>
+        <span class="black">SEARCH ENGINE</span>
+    </div>
     <div class="contentWrapper">
         <div class="inputWrapper">
-            <input type='text' list="KeywordSuggestion" id="SearchBox" placeholder="Search Anything About Takaful...">
-            <input type="button" id="SearchBtn" value="Search" >    
+            <select id="choice">
+                <option value="Frequently Asked Takaful Questions(FAQ)">General Takaful Questions</option>
+                <option value="Takaful Packages Questions" selected>Takaful Packages Questions</option>
+                <option value="Situational Takaful Questions">Situational Takaful Questions</option>
+            </select>
+            
+            <div id="SearchSlit">
+                <input type='text' list="KeywordSuggestion" id="SearchBox" placeholder="Search Anything About Takaful...">
+                <input type="button" id="SearchBtn" value="Search" >
+            </div>   
+
         </div>
         
         <datalist id="KeywordSuggestion"> 
