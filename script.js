@@ -78,7 +78,7 @@ function setAutoComplete() {
         .then(data => {
             console.log(data);
         });*/
-    if(window.location.pathname == "/search.html"){
+    if(window.location.pathname.includes('/search.html')){
         getParam(window.location.search);
     }
    
