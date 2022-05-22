@@ -57,7 +57,7 @@ function getParam(q) {
         })
     }
     else {
-        window.location = "/search";
+        window.location = "https://panzer-kun.github.io/SearchEngine/";
     }
 }
 
