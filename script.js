@@ -9,7 +9,7 @@ let csvData = [];
 
 window.onload = setAutoComplete;
 
-const searchEngineURL = 'https://c0eb-103-5-183-45.ap.ngrok.io/search';
+const searchEngineURL = 'https://1c96-103-5-183-45.ap.ngrok.io/search';
 
 searchButton.addEventListener('click', click);
 
@@ -57,7 +57,7 @@ function getParam(q) {
         })
     }
     else {
-        window.location = "https://panzer-kun.github.io/SearchEngine/";
+        window.location = "./";
     }
 }
 
