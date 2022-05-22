@@ -57,7 +57,7 @@ function getParam(q) {
         })
     }
     else {
-        window.location = "http://127.0.0.1:8000/";
+        window.location = "/search";
     }
 }
 
