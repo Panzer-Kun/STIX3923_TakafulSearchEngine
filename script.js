@@ -44,7 +44,7 @@ function getParam(q) {
 
         searchBox.value = query;
 
-        fetch(searchEngineURL + window.location.search)
+        fetch(searchEngineURL + window.location.search, {mode:"cors"})
         .then(response => {
             if (response.ok) {
                 return response.json();
