@@ -79,7 +79,7 @@ function setAutoComplete() {
             console.log(data);
         });*/
     if(window.location.pathname.includes('/search.html')){
-        getParam(window.location.search);
+        getParam(window.location.search, {mode:"cors"});
     }
    
 
