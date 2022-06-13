@@ -1,7 +1,7 @@
 let searchBox = document.querySelector('#SearchBox');
 let searchButton = document.querySelector('#SearchBtn');
-let searchResult = document.querySelector('#resultText');
-let resultTitle = document.querySelector('#resultTitle');
+let searchResult = document.querySelectorAll('.resultText');
+let resultTitle = document.querySelectorAll('.resultTitle');
 let dataList = document.querySelector('#KeywordSuggestion');
 let selectedChoice = document.querySelector('#choice');
 let csvData = [];
@@ -9,7 +9,7 @@ let csvData = [];
 
 window.onload = setAutoComplete;
 
-const searchEngineURL = 'https://64af-103-5-183-45.ap.ngrok.io/search';
+const searchEngineURL = 'https://d478-103-5-183-43.ap.ngrok.io/search';
 
 searchButton.addEventListener('click', click);
 
@@ -44,7 +44,7 @@ function getParam(q) {
 
         searchBox.value = query;
 
-        fetch(searchEngineURL + window.location.search, {mode:"cors"})
+        fetch(searchEngineURL + window.location.search)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -52,9 +52,20 @@ function getParam(q) {
         })
         .then(data => {
             console.log(data);
-            resultTitle.innerText = data['query'];
-            searchResult.innerText = data['retrieved'];
+            resultTitle[0].innerText = data['query'];
+            searchResult[0].innerText = data['retrieved'];
+        });
+        fetch(searchEngineURL + window.location.search + '&model=glove')
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
         })
+        .then(data => {
+            console.log(data);
+            resultTitle[1].innerText = data['query'];
+            searchResult[1].innerText = data['retrieved'];
+        });
     }
     else {
         window.location = "./";
@@ -78,8 +89,8 @@ function setAutoComplete() {
         .then(data => {
             console.log(data);
         });*/
-    if(window.location.pathname.includes('/search.html')){
-        getParam(window.location.search, {mode:"cors"});
+    if(window.location.pathname == "/search.html"){
+        getParam(window.location.search);
     }
    
 
