@@ -9,7 +9,7 @@ let csvData = [];
 
 window.onload = setAutoComplete;
 
-const searchEngineURL = 'https://beb8-103-5-183-45.ap.ngrok.io /search';
+const searchEngineURL = 'https://beb8-103-5-183-45.ap.ngrok.io/search';
 
 searchButton.addEventListener('click', click);
 
