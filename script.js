@@ -9,7 +9,7 @@ let csvData = [];
 
 window.onload = setAutoComplete;
 
-const searchEngineURL = 'https://d1fb-2001-e68-5403-b7d9-b426-a889-9c25-2034.ap.ngrok.io/search';
+const searchEngineURL = 'https://2a14-2001-e68-5403-330f-d85f-214a-dd2e-d1ed.ap.ngrok.io/search';
 
 searchButton.addEventListener('click', click);
 
@@ -89,7 +89,7 @@ function setAutoComplete() {
         .then(data => {
             console.log(data);
         });*/
-    if(window.location.pathname == "/search.html"){
+    if(window.location.pathname.includes("/search.html")){
         getParam(window.location.search);
     }
    
