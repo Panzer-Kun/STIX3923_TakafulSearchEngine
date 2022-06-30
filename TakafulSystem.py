@@ -13,7 +13,7 @@ from gensim import models
 class System:
     def __init__(self, debug=False):
         self.debug = debug
-        self.df = pd.read_csv("https://raw.githubusercontent.com/Panzer-Kun/SearchEngine/main/AIA_TakafulCombinedLatest.csv", usecols=[0,1])
+        self.df = pd.read_csv("https://raw.githubusercontent.com/Panzer-Kun/STIX3923_TakafulSearchEngine/main/AIA_TakafulCombinedLatest.csv", usecols=[0,1])
         print(self.df)
         self.df.columns = ["questions", "answers"]
         self.cleaned_sentences = self.get_cleaned_sentences(stopwords=True)
