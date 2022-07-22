@@ -1,4 +1,4 @@
 # SearchEngine
 This search engine is a web-based system,Takaful Financial Literacy Application(Takaful Search Engine.This system is built for the general public mainly Young Muslims who wanted to inquire or ask anything about Takaful as well for Takaful Sales Advisor/Agents as well as researchers(lecturers)doing researches related to Takaful in general.Takaful Financial Literacy Application should be able to function like Google search engine,but instead,this search engine will only focuses on Takaful such as searching for the most suitable takaful policies for Below 40% income group and many more.The word embedding techniques that will be programmed into  the system will also help in improving and extending the search results
 
-![STIX3923iQTakafulSystem](/SearchEngine/STIX3923_Project2_Poster.jpg?raw=true "System Poster")
+![STIX3923iQTakafulSystem](/STIX3923_Project2_Poster.jpg?raw=true "System Poster")
